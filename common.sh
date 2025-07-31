@@ -65,14 +65,6 @@ nodejs_setup(){
 python_setup(){
     dnf install python3 gcc python3-devel -y &>>$LOG_FILE
     VALIDATE $? "installing python3"
-    id roboshop &>>$LOG_FILE
-    if [ $? -ne 0 ]
-    then
-        useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-        VALIDATE $? "creating user roboshop"
-    else
-        echo "user already exists"
-    fi  
     pip3 install -r requirements.txt &>>$LOG_FILE
     VALIDATE $? "Installing dependencies"
 }
@@ -94,6 +86,7 @@ maven_setup(){
 }
 systemd_setup(){
     cp $SCRIPT_DIR/$app_name.service /etc/systemd/system/$app_name.service
+    VALIDATE $? "copying the $app_name.service file"
     systemctl daemon-reload &>>$LOG_FILE
     VALIDATE $? "daemon reloading the service"
     systemctl enable $app_name &>>$LOG_FILE
