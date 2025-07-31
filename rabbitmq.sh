@@ -1,5 +1,6 @@
 #!/bin/bash
 source ./common.sh
+app_name=rabbitmq
 check_root
 echo "Please enter rabbitmq password to setup"
 read -s RABBITMQ_PASSWD
@@ -16,3 +17,4 @@ VALIDATE $? "adding the user"
 rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>$LOG_FILE
 VALIDATE $? "setting the permissions to the user"
 
+print_time

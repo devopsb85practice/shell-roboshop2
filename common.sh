@@ -37,10 +37,10 @@ app_setup(){
         useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
         validate $? "creating user roboshop"
     else
-        echo "User roboshop already exists  $Y SKIPPING $N"
+        echo -e "User roboshop already exists $Y SKIPPING $N"
     fi
     rm -rf /app
-    mkdir /app 
+    mkdir /app
     curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip &>>$LOG_FILE
     VALIDATE $? "downloading the $app_name.zip"
     unzip /tmp/$app_name.zip &>>$LOG_FILE

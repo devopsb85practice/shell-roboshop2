@@ -2,7 +2,6 @@
 source ./common.sh
 app_name=redis
 check_root
-
 dnf module disable redis -y &>>$LOG_FILE
 VALIDATE $? "disabling the default redis version"
 dnf module enable redis:7 -y &>>$LOG_FILE
