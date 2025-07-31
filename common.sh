@@ -46,7 +46,7 @@ app_setup(){
     VALIDATE $? "unzipping the files"
 }
 print_time(){
-    END_TIME= $(date +%s)
+    END_TIME=$(date +%s)
     TOTAL_TIME=$(($END_TIME-$START_TIME))
     echo -e "script executed successfully, total time taken is $G $TOTAL_TIME seconds $N"
 }
