@@ -39,10 +39,12 @@ app_setup(){
     else
         echo -e "User roboshop already exists $Y SKIPPING $N"
     fi
-    rm -rf /app/*
+   
     mkdir /app
     curl -o /tmp/$app_name.zip https://roboshop-artifacts.s3.amazonaws.com/$app_name-v3.zip &>>$LOG_FILE
     VALIDATE $? "downloading the $app_name.zip"
+    rm -rf /app/*
+    cd /app
     unzip /tmp/$app_name.zip &>>$LOG_FILE
     VALIDATE $? "unzipping the files"
 }
