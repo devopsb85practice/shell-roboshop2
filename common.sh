@@ -31,7 +31,7 @@ VALIDATE(){
     fi
 }
 app_setup(){
-    id roboshop &>>$sLOG_FILE
+    id roboshop &>>$LOG_FILE
     if [ $? -ne 0 ]
     then
         useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
